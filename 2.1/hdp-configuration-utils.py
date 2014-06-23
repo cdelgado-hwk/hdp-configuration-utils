@@ -104,7 +104,10 @@ def main():
   cores = int (options.cores)
   memory = int (options.memory)
   disks = int (options.disks)
-  hbaseEnabled = ast.literal_eval(options.hbase)
+  try:
+    hbaseEnabled = ast.literal_eval(options.hbase)
+  except ValueError:
+    sys.exit("Error! Value for Hbase can only by 'True' or 'False'")
   
   log.info("Using cores=" +  str(cores) + " memory=" + str(memory) + "GB" +
             " disks=" + str(disks) + " hbase=" + str(hbaseEnabled))
